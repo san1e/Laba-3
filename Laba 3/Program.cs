@@ -21,14 +21,52 @@ namespace Laba_3
             }
             return current + CalcExp(x, n + 1, precision);
         }
+        static double CalcCos (double x, int n = 0, double precision = 1e-10)
+        {
+            double result = Math.Pow(-1, n) * Math.Pow(x, 2 * n) / CalcFactorial((uint)(2 * n));
+            if (Math.Abs(result) < precision)
+            {
+                return result;
+            }
+            return result + CalcCos(x, n + 1, precision);
+            {
+
+            }
+        }
         static void Main(string[] args)
         {
-            //uint Fact = (uint)CalcFactorial(Convert.ToUInt32(Console.ReadLine()));
-            //Console.WriteLine(Fact);
-            double x = Convert.ToDouble(Console.ReadLine());
-            double result = CalcExp(x);
-            Console.WriteLine("Exp(x)      = {0}", result);
-            Console.WriteLine("Math.Exp(x) = {0}", Math.Exp(x));
+            int choice;
+            do
+            {
+                Console.WriteLine("In order to calculate Exp type 1");
+                Console.WriteLine("In order to calculate Cos type 2");
+                Console.WriteLine("To stop the programm type 0");
+                choice = Convert.ToInt32(Console.ReadLine());
+                switch (choice)
+                {
+                    case 1:
+                        Console.WriteLine("Type x for Exp");
+                        double x = Convert.ToDouble(Console.ReadLine());
+                        double ResultExp = CalcExp(x);
+                        Console.WriteLine($"Exp(x)      = {ResultExp}");
+                        Console.WriteLine($"Math.Exp(x) = {Math.Exp(x)}");//Перевірка правильності знаходження 
+                        break;
+                    case 2:
+                        Console.WriteLine("Type x for Cos");
+                        x = Convert.ToDouble(Console.ReadLine());
+                        double ResultCos = CalcCos(x);
+                        Console.WriteLine($"Cos(x)      = {ResultCos}");
+                        Console.WriteLine($"Math.Cos(x) = {Math.Cos(x)}");
+                        break;
+                    case 0:
+                        Console.WriteLine("On more time push Enter");
+                        Console.ReadLine();
+                        break;
+
+                }
+
+            } while (choice != 0);
+            
         }
     }
 }
